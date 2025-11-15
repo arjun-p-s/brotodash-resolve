@@ -11,6 +11,7 @@ There are several ways of editing your application.
 **Use Lovable**
 
 Simply visit the [Lovable Project](https://lovable.dev/projects/d5959a8e-a3a8-4dd8-9ece-40415249ef00) and start prompting.
+use email:admin@test.com and password:Kiran@123 for admin login
 
 Changes made via Lovable will be committed automatically to this repo.
 
