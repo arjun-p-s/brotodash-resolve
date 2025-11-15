@@ -60,7 +60,7 @@ const IssueDetail = () => {
         .from("issues")
         .select(`
           *,
-          profiles:student_id(full_name, batch, domain)
+          student:profiles(full_name, batch, domain)
         `)
         .eq("id", id)
         .single();
@@ -72,7 +72,7 @@ const IssueDetail = () => {
         .from("comments")
         .select(`
           *,
-          profiles:user_id(full_name)
+          user:profiles(full_name)
         `)
         .eq("issue_id", id)
         .order("created_at", { ascending: true });
@@ -129,7 +129,7 @@ const IssueDetail = () => {
         })
         .select(`
           *,
-          profiles:user_id(full_name)
+          user:profiles(full_name)
         `)
         .single();
 
@@ -192,9 +192,9 @@ const IssueDetail = () => {
                   <StatusBadge status={issue.status} />
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  <p>Reported by: {issue.profiles?.full_name}</p>
-                  {issue.profiles?.batch && <p>Batch: {issue.profiles.batch}</p>}
-                  {issue.profiles?.domain && <p>Domain: {issue.profiles.domain}</p>}
+                  <p>Reported by: {issue.student?.full_name}</p>
+                  {issue.student?.batch && <p>Batch: {issue.student.batch}</p>}
+                  {issue.student?.domain && <p>Domain: {issue.student.domain}</p>}
                   <p className="mt-2">
                     Created {formatDistanceToNow(new Date(issue.created_at), { addSuffix: true })}
                   </p>
@@ -243,7 +243,7 @@ const IssueDetail = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-semibold text-sm">
-                        {comment.profiles?.full_name}
+                        {comment.user?.full_name}
                       </span>
                       {comment.is_admin && (
                         <span className="text-xs px-2 py-0.5 rounded-full bg-primary text-primary-foreground">
