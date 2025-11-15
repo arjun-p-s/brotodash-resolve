@@ -57,7 +57,7 @@ const AdminDashboard = () => {
         .from("issues")
         .select(`
           *,
-          profiles:student_id(full_name, batch, domain),
+          student:profiles!student_id(full_name, batch, domain),
           comments:comments(count)
         `)
         .order("created_at", { ascending: false });
